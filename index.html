@@ -5,59 +5,56 @@ Create portfolio homepage
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#050407">
-<meta name="description" content="Explore the creative universe of Jennifer — front-end web developer and creative builder.">
-<title>Jennifer | My Creative Universe</title>
+<meta name="description" content="Explore Jennifer's creative universe — front-end development, fashion and fine dining.">
+<title>Jennifer | Beyond the Ordinary</title>
 
 <style>
 :root {
   --gold: #f5c76b;
-  --bright: #ffe5a3;
+  --pale: #ffe9b7;
+  --muted: #bdb5c5;
   --bg: #050407;
-  --muted: #b9b3bd;
-  --panel: rgba(19, 15, 25, .78);
+  --panel: rgba(22, 16, 29, .82);
 }
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
-body {
+html, body {
   margin: 0;
-  color: #fffaf1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   background: var(--bg);
+  color: #fffaf1;
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
 }
 
+body { overscroll-behavior: none; }
 a { color: inherit; text-decoration: none; }
-
-button, a { -webkit-tap-highlight-color: transparent; }
-
+button { font: inherit; }
 
 #stars, #stars2 {
   position: fixed;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
+  inset: -40%;
+  width: 180%;
+  height: 180%;
+  z-index: 0;
   pointer-events: none;
-  z-index: -2;
   background-image:
     radial-gradient(2px 2px at 20px 40px, #fff 50%, transparent 100%),
-    radial-gradient(1px 1px at 100px 130px, #f5c76b 50%, transparent 100%),
+    radial-gradient(1px 1px at 100px 130px, var(--gold) 50%, transparent 100%),
     radial-gradient(2px 2px at 220px 80px, #fff 50%, transparent 100%),
     radial-gradient(1px 1px at 300px 200px, #fff 50%, transparent 100%),
-    radial-gradient(1px 1px at 170px 270px, #f5c76b 50%, transparent 100%),
-    radial-gradient(2px 2px at 60px 240px, #fff4d6 50%, transparent 100%),
-    radial-gradient(1px 1px at 260px 150px, #e7b8ff 50%, transparent 100%);
+    radial-gradient(1px 1px at 170px 270px, var(--gold) 50%, transparent 100%),
+    radial-gradient(2px 2px at 60px 240px, #fff2d1 50%, transparent 100%);
   background-size: 340px 310px;
-  animation: starDrift 45s linear infinite;
-  will-change: transform;
+  animation: starDrift 50s linear infinite;
 }
 
 #stars2 {
-  opacity: .5;
+  opacity: .38;
   background-position: 100px 120px;
   background-size: 230px 270px;
   animation-duration: 75s;
@@ -65,358 +62,411 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 @keyframes starDrift {
-  from { transform: translate3d(0, 0, 0) rotate(0deg); }
-  to { transform: translate3d(-100px, -180px, 0) rotate(3deg); }
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(-100px,-180px,0); }
 }
 
 .ambient {
   position: fixed;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: rgba(171, 99, 32, .10);
-  filter: blur(90px);
+  z-index: 0;
   pointer-events: none;
-  z-index: -1;
-  animation: glow 7s ease-in-out infinite alternate;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(172, 100, 36, .12);
+  filter: blur(85px);
+  animation: breathe 8s ease-in-out infinite alternate;
 }
 
-.ambient.one { top: 8%; left: 20%; }
-.ambient.two { right: -200px; bottom: 4%; animation-delay: -3s; }
+.ambient.a { top: 10%; left: 18%; }
+.ambient.b { bottom: -20%; right: -10%; animation-delay: -4s; }
 
-@keyframes glow {
-  from { opacity: .3; transform: scale(.85); }
-  to { opacity: .9; transform: scale(1.15); }
+@keyframes breathe {
+  to { transform: scale(1.25); opacity: .8; }
 }
 
 header {
-  position: relative;
-  z-index: 5;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px 6%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 24px 7%;
-  border-bottom: 1px solid rgba(245,199,107,.13);
-  background: rgba(5,4,7,.55);
-  backdrop-filter: blur(14px);
+  gap: 12px;
+  background: linear-gradient(#050407e8, transparent);
 }
 
-.logo {
-  font-family: Georgia, serif;
+.brand {
   color: var(--gold);
-  font-size: 21px;
+  font: 20px Georgia, serif;
   letter-spacing: 2px;
+  white-space: nowrap;
 }
 
-.logo small {
+.brand small {
   display: block;
-  margin-top: 5px;
-  font: 10px Arial, sans-serif;
-  letter-spacing: 3px;
   color: var(--muted);
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  margin-top: 4px;
 }
 
-nav { display: flex; gap: 24px; flex-wrap: wrap; }
-
-nav a {
+.github {
+  border: 1px solid #f5c76b88;
+  padding: 10px 14px;
+  border-radius: 30px;
   font-size: 12px;
-  color: var(--muted);
-  transition: color .3s;
+  transition: background .25s, transform .25s;
 }
 
-nav a:hover { color: var(--gold); }
+.github:hover { background: #f5c76b20; transform: translateY(-2px); }
 
-.hero {
-  min-height: 650px;
-  max-width: 1400px;
-  margin: auto;
-  padding: 65px 7% 85px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+#deck {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  transform: translateX(0);
+  transition: transform .75s cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+
+.world {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 25px;
+  text-align: center;
+  padding: 100px 8% 95px;
+  position: relative;
+  scrollbar-width: none;
+}
+
+.world::-webkit-scrollbar { display: none; }
+
+.world-inner {
+  width: 100%;
+  max-width: 980px;
+  margin: auto;
 }
 
 .eyebrow {
   color: var(--gold);
-  font-size: 10px;
-  letter-spacing: 4px;
   text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 10px;
+  line-height: 1.8;
 }
 
-h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 
 h1 {
-  font-size: clamp(43px, 6vw, 78px);
-  font-weight: 400;
-  line-height: 1.06;
-  margin: 22px 0;
+  font-size: clamp(40px, 7vw, 78px);
+  line-height: 1.08;
+  margin: 17px 0;
+}
+
+h2 {
+  font-size: clamp(35px, 6vw, 64px);
+  line-height: 1.12;
+  margin: 15px 0;
 }
 
 h1 em, h2 em { color: var(--gold); font-weight: 400; }
 
-.intro {
+.description {
   color: var(--muted);
-  max-width: 460px;
-  line-height: 1.9;
+  max-width: 580px;
   font-size: 14px;
+  line-height: 1.9;
+  margin: 16px auto;
 }
 
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
 
 .btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #f5c76b99;
+  border-radius: 30px;
   padding: 13px 19px;
-  border: 1px solid var(--gold);
-  border-radius: 40px;
   font-size: 12px;
-  transition: transform .3s, background .3s;
+  color: #fff5df;
+  background: #100d15a8;
+  transition: transform .25s, background .25s;
 }
 
-.btn:hover { transform: translateY(-4px); background: rgba(245,199,107,.12); }
+.btn:hover { transform: translateY(-3px); background: #f5c76b20; }
+.btn.primary { background: var(--gold); color: #171009; border-color: var(--gold); }
 
-.btn.primary { background: var(--gold); color: #17100a; }
-
-.universe {
-  position: relative;
-  min-height: 410px;
-  display: grid;
-  place-items: center;
-  isolation: isolate;
-}
-
-.core {
-  width: min(66vw, 300px);
+.orbit-scene {
+  width: min(54vw, 270px);
+  min-width: 185px;
   aspect-ratio: 1;
+  margin: 28px auto 8px;
   position: relative;
   display: grid;
   place-items: center;
+}
+
+.planet-core {
+  position: absolute;
+  inset: 13%;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 35% 30%, rgba(255,227,170,.22), transparent 30%),
-    radial-gradient(circle, #21172a 0%, #0b0910 60%, #050407 72%);
-  border: 1px solid rgba(245,199,107,.7);
-  box-shadow: 0 0 35px rgba(245,174,66,.18), inset 0 0 45px rgba(245,199,107,.1);
+    radial-gradient(circle at 32% 27%, #76553d 0, transparent 28%),
+    radial-gradient(circle at 65% 65%, #30203d 0, #09070d 65%);
+  border: 1px solid #f5c76b99;
+  box-shadow: 0 0 35px #f5c76b30, inset 0 0 35px #f5c76b12;
 }
 
-.core::before, .core::after {
-  content: "";
+.orbit {
   position: absolute;
-  inset: -20px;
-  border: 2px solid rgba(245,199,107,.75);
+  inset: -2%;
+  border: 2px solid #f5c76bb0;
   border-radius: 50%;
-  transform: rotate(-28deg) scaleY(.35);
-  box-shadow: 0 0 15px rgba(245,199,107,.4);
-  animation: orbit 9s linear infinite;
+  transform: rotate(-28deg) scaleY(.38);
+  animation: spin 10s linear infinite;
+  box-shadow: 0 0 12px #f5c76b35;
 }
 
-.core::after {
-  inset: -38px;
-  border-color: rgba(255,226,159,.48);
-  transform: rotate(36deg) scaleY(.46);
-  animation-duration: 14s;
+.orbit.two {
+  inset: -15%;
+  border-color: #f5c76b65;
+  transform: rotate(42deg) scaleY(.53);
+  animation-duration: 16s;
   animation-direction: reverse;
 }
 
-@keyframes orbit {
-  from { rotate: 0deg; }
-  to { rotate: 360deg; }
+.orbit.three {
+  inset: -24%;
+  border-width: 1px;
+  border-color: #e4baff55;
+  transform: rotate(70deg) scaleY(.65);
+  animation-duration: 22s;
 }
 
-.portrait-placeholder {
-  width: 78%;
-  height: 78%;
+@keyframes spin { to { rotate: 360deg; } }
+
+.portrait {
+  position: relative;
+  z-index: 2;
+  width: 65%;
+  aspect-ratio: 1;
+  overflow: hidden;
   border-radius: 50%;
-  border: 1px dashed rgba(245,199,107,.6);
-  background: radial-gradient(circle, #21172b, #08070b 75%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 15px;
+  border: 1px dashed #f5c76b99;
+  background: #0b0812;
   color: var(--gold);
-  overflow: hidden;
-  z-index: 1;
+  padding: 10px;
 }
 
-.portrait-placeholder .person {
-  font-size: 50px;
-  margin-bottom: 12px;
-  animation: float 4s ease-in-out infinite;
-}
-
-.portrait-placeholder strong { font-size: 12px; letter-spacing: 2px; }
-.portrait-placeholder span { font-size: 10px; color: var(--muted); margin-top: 8px; }
-
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.planet {
+.portrait img {
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.portrait .symbol { font-size: 35px; margin-bottom: 8px; }
+.portrait strong { font-size: 10px; letter-spacing: 1px; }
+.portrait span { font-size: 9px; color: var(--muted); margin-top: 6px; }
+
+.floating-planet {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 10%;
+  right: 8%;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 25%, #fff0c5, #bd7b34 35%, #3d1d13 75%);
-  box-shadow: 0 0 24px rgba(245,174,66,.28);
+  background: radial-gradient(circle at 30% 30%, #fff1c7, #bd7b34 45%, #3c1d17);
+  box-shadow: 0 0 18px #f5c76b55;
   animation: float 5s ease-in-out infinite;
 }
 
-.planet.p1 { width: 35px; height: 35px; top: 13%; right: 9%; }
-.planet.p2 { width: 20px; height: 20px; left: 6%; bottom: 18%; animation-delay: -2s; }
-.planet.p3 { width: 12px; height: 12px; top: 19%; left: 13%; animation-delay: -1s; }
+.floating-planet.small {
+  width: 11px;
+  height: 11px;
+  top: auto;
+  right: auto;
+  bottom: 16%;
+  left: 5%;
+  animation-delay: -2s;
+}
 
-.tag {
+@keyframes float {
+  0%,100% { translate: 0 0; }
+  50% { translate: 0 -13px; }
+}
+
+.world-number {
   position: absolute;
-  right: -2%;
-  bottom: 11%;
-  padding: 13px 16px;
-  border: 1px solid rgba(245,199,107,.38);
-  background: var(--panel);
-  border-radius: 12px;
-  font-size: 11px;
-  line-height: 1.8;
-  backdrop-filter: blur(10px);
+  top: 90px;
+  right: 6%;
+  font: 12px Georgia, serif;
+  letter-spacing: 2px;
+  color: #f5c76b90;
 }
 
-.tag span { display: block; color: var(--gold); }
-
-section.content {
-  max-width: 1200px;
-  margin: auto;
-  padding: 65px 7%;
+.project-symbol {
+  font-size: clamp(48px, 8vw, 85px);
+  color: var(--gold);
+  text-shadow: 0 0 35px #f5c76b40;
+  margin-bottom: 15px;
 }
 
-.section-head { margin-bottom: 30px; }
-
-h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 400; margin: 12px 0; }
-
-.section-note { color: var(--muted); line-height: 1.8; font-size: 13px; max-width: 560px; }
-
-.projects {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 20px;
+.project-frame {
+  max-width: 700px;
+  margin: 25px auto;
+  padding: 25px;
+  border: 1px solid #f5c76b55;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #2a1c2a9c, #09070dbb);
+  box-shadow: 0 20px 80px #0005, inset 0 0 40px #f5c76b08;
 }
 
-.project {
-  position: relative;
-  padding: 28px;
-  border-radius: 18px;
-  border: 1px solid rgba(245,199,107,.25);
-  background: linear-gradient(140deg, rgba(43,29,42,.75), rgba(10,8,14,.88));
-  transition: transform .35s, border-color .35s, box-shadow .35s;
-  overflow: hidden;
+.project-frame p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
 }
 
-.project::after {
-  content: "";
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  right: -70px;
-  top: -75px;
-  background: rgba(245,199,107,.08);
-  filter: blur(12px);
+.skill-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 25px auto;
+  max-width: 650px;
 }
-
-.project:hover {
-  transform: translateY(-8px);
-  border-color: var(--gold);
-  box-shadow: 0 15px 40px rgba(0,0,0,.25);
-}
-
-.project-icon { font-size: 34px; }
-.project h3 { font-size: 28px; margin: 16px 0 8px; font-weight: 400; }
-.project p { color: var(--muted); font-size: 13px; line-height: 1.8; }
-.project .btn { margin-top: 10px; position: relative; z-index: 1; }
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: start;
-}
-
-.skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 
 .skill {
-  padding: 11px 14px;
-  border: 1px solid rgba(245,199,107,.25);
+  padding: 11px 15px;
+  border: 1px solid #f5c76b55;
   border-radius: 30px;
-  color: #e9d5ae;
+  color: #f1dcb6;
+  background: #15101b9c;
   font-size: 12px;
-  background: rgba(255,255,255,.025);
 }
 
-.quote {
-  padding: 25px;
-  border-left: 2px solid var(--gold);
-  background: rgba(245,199,107,.045);
+.counter {
+  position: absolute;
+  z-index: 10;
+  bottom: max(25px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  white-space: nowrap;
+  font-size: 10px;
   color: var(--muted);
-  line-height: 1.9;
-  font-family: Georgia, serif;
-  font-style: italic;
 }
 
-.contact-box {
-  text-align: center;
-  padding: 45px 20px;
-  border: 1px solid rgba(245,199,107,.22);
+.dots { display: flex; align-items: center; gap: 7px; }
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border: 0;
   border-radius: 20px;
-  background: radial-gradient(ellipse at top, rgba(153,93,35,.15), transparent 70%);
+  padding: 0;
+  background: #8d8298;
+  cursor: pointer;
+  transition: width .3s, background .3s;
 }
 
-footer {
-  border-top: 1px solid rgba(245,199,107,.15);
-  padding: 28px 7%;
-  text-align: center;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 2;
+.dot.active { width: 23px; background: var(--gold); }
+
+.arrow {
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border: 1px solid #f5c76b66;
+  background: #100d15bd;
+  color: var(--gold);
+  font-size: 22px;
+  cursor: pointer;
+  transition: background .25s, transform .25s;
 }
 
-footer strong { color: var(--gold); }
+.arrow:hover { background: #f5c76b28; }
+.arrow:focus-visible, a:focus-visible, .dot:focus-visible {
+  outline: 2px solid var(--pale);
+  outline-offset: 4px;
+}
+#prev { left: 15px; }
+#next { right: 15px; }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .8s ease, transform .8s ease;
+.hint {
+  color: #c5b9cb;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-top: 20px;
 }
 
-.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 600px) {
+  header { padding: 15px 5%; }
+  .brand { font-size: 17px; }
+  .brand small { font-size: 8px; }
+  .github { padding: 9px 11px; font-size: 11px; }
+  .world { padding: 90px 9% 85px; }
+  .world-number { top: 78px; right: 6%; font-size: 10px; }
+  .orbit-scene { width: min(56vw, 225px); margin: 23px auto 6px; }
+  .project-frame { padding: 21px 17px; }
+  .project-frame p { font-size: 13px; }
+  .arrow { width: 35px; height: 35px; font-size: 18px; }
+  #prev { left: 6px; }
+  #next { right: 6px; }
+  .description { font-size: 13px; }
+  .hint { margin-top: 15px; }
+}
+
+@media (max-height: 700px) {
+  .world { padding-top: 80px; padding-bottom: 75px; }
+  .orbit-scene { width: min(40vh, 210px); margin: 15px auto 5px; }
+  h1 { font-size: clamp(35px, 6vw, 58px); }
+  h2 { font-size: clamp(30px, 5vw, 48px); }
+  .project-frame { margin: 14px auto; padding: 18px; }
+  .description { margin: 10px auto; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
-}
-
-@media (max-width: 760px) {
-  header { padding: 19px 5%; align-items: flex-start; flex-direction: column; }
-  nav { gap: 16px; }
-  .hero { grid-template-columns: 1fr; padding: 55px 6% 65px; gap: 10px; }
-  .universe { min-height: 350px; margin-top: 15px; }
-  .core { width: min(65vw, 260px); }
-  .tag { right: 0; bottom: 4%; }
-  section.content { padding: 55px 6%; }
-  .projects, .about-grid { grid-template-columns: 1fr; }
-  .project { padding: 24px; }
-}
-
-@media (max-width: 380px) {
-  nav { gap: 12px; }
-  nav a { font-size: 11px; }
-  .universe { min-height: 300px; }
-  .tag { font-size: 10px; }
 }
 </style>
 </head>
@@ -424,165 +474,217 @@ footer strong { color: var(--gold); }
 <body>
 <div id="stars"></div>
 <div id="stars2"></div>
-<div class="ambient one"></div>
-<div class="ambient two"></div>
+<div class="ambient a"></div>
+<div class="ambient b"></div>
 
 <header>
-  <a class="logo" href="#home">JENNIFER
+  <a class="brand" href="#home" id="homeLink">
+    JENNIFER
     <small>MY CREATIVE UNIVERSE</small>
   </a>
-  <nav aria-label="Main navigation">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <a class="github" href="https://github.com/jennifersignaturecouture"
+     target="_blank" rel="noopener noreferrer">GitHub ↗</a>
 </header>
 
-<main>
-<section class="hero" id="home">
-  <div class="reveal">
-    <div class="eyebrow">Welcome to my universe</div>
-    <h1>I turn ideas into <em>experiences.</em></h1>
-    <p class="intro">
-      I'm a front-end web developer and creative builder who loves
-      bringing ideas to life through thoughtful design, code and
-      problem-solving. Every project is a new world to explore.
-    </p>
-    <div class="actions">
-      <a class="btn primary" href="#projects">Explore My Projects ↗</a>
-      <a class="btn" href="#contact">Let's Connect ✦</a>
-    </div>
-  </div>
+<button class="arrow" id="prev" aria-label="Previous screen">‹</button>
+<button class="arrow" id="next" aria-label="Next screen">›</button>
 
-  <div class="universe reveal" aria-label="Animated galaxy and portrait placeholder">
-    <div class="core">
-      <div class="portrait-placeholder">
-        <div class="person" aria-hidden="true">✧</div>
-        <strong>YOUR PORTRAIT</strong>
-        <span>Your photo will go here</span>
+<main id="deck" aria-label="Portfolio worlds">
+
+  <section class="world" id="home" aria-label="Welcome">
+    <span class="world-number">WORLD 01 / 04</span>
+    <div class="world-inner">
+      <div class="eyebrow">You are entering my universe</div>
+      <h1>Beyond the <em>ordinary.</em></h1>
+      <p class="description">
+        I'm Jennifer — a front-end developer and creative builder.
+        I turn ideas into digital experiences through design, code
+        and a love for solving problems.
+      </p>
+
+      <div class="orbit-scene" aria-label="Your portrait will appear inside this animated galaxy">
+        <div class="planet-core"></div>
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+        <div class="orbit three"></div>
+        <div class="portrait">
+          <!-- Later, upload your photo and change the filename to your actual image name. -->
+          <!-- Example: <img src="jennifer.jpg" alt="Jennifer"> -->
+          <div class="symbol" aria-hidden="true">✧</div>
+          <strong>YOUR PORTRAIT</strong>
+          <span>Your photo goes here</span>
+        </div>
+        <div class="floating-planet"></div>
+        <div class="floating-planet small"></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" data-go="1">Explore my worlds →</button>
+      </div>
+      <p class="hint">SWIPE LEFT OR RIGHT TO EXPLORE</p>
+    </div>
+  </section>
+
+  <section class="world" id="couture" aria-label="Jennifer Signature Couture">
+    <span class="world-number">WORLD 02 / 04</span>
+    <div class="world-inner">
+      <div class="eyebrow">A vision of timeless elegance</div>
+      <div class="project-frame">
+        <div class="project-symbol" aria-hidden="true">♛</div>
+        <h2>Jennifer <em>Signature Couture</em></h2>
+        <p>
+          A luxury fashion website inspired by bespoke style,
+          elegant design and a dream close to my heart.
+          This project represents my passion for bringing a brand's
+          identity to life on the web.
+        </p>
+        <div class="eyebrow">Fashion · Web Design</div>
+        <div class="actions">
+          <a class="btn primary" href="https://jennifersignaturecouture.github.io/jennifer-signature-couture/"
+             target="_blank" rel="noopener noreferrer">Enter the fashion world ↗</a>
+          <button class="btn" data-go="2">Next world →</button>
+        </div>
       </div>
     </div>
-    <div class="planet p1"></div>
-    <div class="planet p2"></div>
-    <div class="planet p3"></div>
-    <div class="tag">
-      <strong>Front-End Developer</strong>
-      <span>HTML · CSS · JavaScript</span>
-      Creating with purpose ✨
+  </section>
+
+  <section class="world" id="catherine" aria-label="Catherine Royale">
+    <span class="world-number">WORLD 03 / 04</span>
+    <div class="world-inner">
+      <div class="eyebrow">An invitation to something extraordinary</div>
+      <div class="project-frame">
+        <div class="project-symbol" aria-hidden="true">✦</div>
+        <h2>Catherine <em>Royale</em></h2>
+        <p>
+          A refined restaurant website concept built around modern
+          French cuisine, luxury hospitality and memorable dining.
+          A digital home for my dream of fine dining.
+        </p>
+        <div class="eyebrow">Hospitality · Web Design</div>
+        <div class="actions">
+          <a class="btn primary" href="https://catherine-royale.github.io/catherine-royale/"
+             target="_blank" rel="noopener noreferrer">Discover Catherine Royale ↗</a>
+          <button class="btn" data-go="3">Next world →</button>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="content reveal" id="projects">
-  <div class="section-head">
-    <div class="eyebrow">My creative universe</div>
-    <h2>Worlds I've <em>created.</em></h2>
-    <p class="section-note">
-      Two projects. Two different visions. Each one is part of my journey
-      as a developer and creative entrepreneur.
-    </p>
-  </div>
-
-  <div class="projects">
-    <article class="project">
-      <div class="project-icon" aria-hidden="true">♛</div>
-      <div class="eyebrow">Fashion · E-commerce concept</div>
-      <h3>Jennifer Signature Couture</h3>
-      <p>
-        A luxury fashion brand website inspired by timeless elegance,
-        bespoke style and a dream that means everything to me.
-      </p>
-      <a class="btn" href="https://jennifersignaturecouture.github.io/jennifer-signature-couture/" target="_blank" rel="noopener noreferrer">Enter This World ↗</a>
-    </article>
-
-    <article class="project">
-      <div class="project-icon" aria-hidden="true">✦</div>
-      <div class="eyebrow">Hospitality · Restaurant</div>
-      <h3>Catherine Royale</h3>
-      <p>
-        A refined restaurant website designed around modern French cuisine,
-        fine dining and memorable guest experiences.
-      </p>
-      <a class="btn" href="https://catherine-royale.github.io/catherine-royale/" target="_blank" rel="noopener noreferrer">Discover This World ↗</a>
-    </article>
-  </div>
-</section>
-
-<section class="content reveal" id="about">
-  <div class="about-grid">
-    <div>
-      <div class="eyebrow">Beyond the screen</div>
-      <h2>A little about <em>me.</em></h2>
-      <p class="section-note">
+  <section class="world" id="skills" aria-label="Skills and contact">
+    <span class="world-number">WORLD 04 / 04</span>
+    <div class="world-inner">
+      <div class="eyebrow">The mind behind the worlds</div>
+      <h2>Learning. Building. <em>Becoming.</em></h2>
+      <p class="description">
         I love the meeting point between technology and creativity.
-        I enjoy building visually engaging websites, learning new skills,
-        and finding solutions when something doesn't work as expected.
-        I'm growing one project, one challenge and one line of code at a time.
+        Every project teaches me something new, and every challenge
+        gives me another chance to grow.
       </p>
-    </div>
-    <div class="quote">
-      “Big dreams begin with small steps. Keep creating, keep learning,
-      and keep turning your ideas into something real.”
-    </div>
-  </div>
-</section>
 
-<section class="content reveal" id="skills">
-  <div class="eyebrow">My toolkit</div>
-  <h2>Skills & <em>curiosity.</em></h2>
-  <p class="section-note">The tools I use and the abilities I continue to develop.</p>
-  <div class="skills">
-    <span class="skill">HTML5</span>
-    <span class="skill">CSS3</span>
-    <span class="skill">Responsive Design</span>
-    <span class="skill">JavaScript · Learning</span>
-    <span class="skill">UI Design</span>
-    <span class="skill">Git & GitHub</span>
-    <span class="skill">Problem Solving</span>
-    <span class="skill">Creative Thinking</span>
-  </div>
-</section>
+      <div class="skill-list">
+        <span class="skill">HTML5</span>
+        <span class="skill">CSS3</span>
+        <span class="skill">Responsive Design</span>
+        <span class="skill">JavaScript · Learning</span>
+        <span class="skill">Git & GitHub</span>
+        <span class="skill">UI Design</span>
+        <span class="skill">Problem Solving</span>
+      </div>
 
-<section class="content reveal" id="contact">
-  <div class="contact-box">
-    <div class="eyebrow">The next world starts here</div>
-    <h2>Let's create something <em>meaningful.</em></h2>
-    <p class="section-note" style="margin: 0 auto 24px;">
-      Open to connecting with fellow creators, collaborators and people
-      building exciting things with technology.
-    </p>
-    <a class="btn primary" href="https://github.com/jennifersignaturecouture" target="_blank" rel="noopener noreferrer">Explore My GitHub ↗</a>
-  </div>
-</section>
+      <div class="actions">
+        <a class="btn primary" href="https://github.com/jennifersignaturecouture"
+           target="_blank" rel="noopener noreferrer">View my GitHub profile ↗</a>
+        <button class="btn" data-go="0">Return to my universe ↺</button>
+      </div>
+      <p class="description">Open to connecting with recruiters, collaborators and fellow creators.</p>
+    </div>
+  </section>
+
 </main>
 
-<footer>
-  <strong>JENNIFER · MY CREATIVE UNIVERSE</strong><br>
-  Built with curiosity, creativity and code.<br>
-  © <span id="year"></span> Jennifer. Keep dreaming beyond the stars.
-</footer>
+<div class="counter" aria-label="Portfolio navigation">
+  <span id="screenLabel">01 / 04</span>
+  <div class="dots">
+    <button class="dot active" data-go="0" aria-label="Go to welcome screen"></button>
+    <button class="dot" data-go="1" aria-label="Go to fashion project"></button>
+    <button class="dot" data-go="2" aria-label="Go to restaurant project"></button>
+    <button class="dot" data-go="3" aria-label="Go to skills and contact"></button>
+  </div>
+  <span>EXPLORE ↔</span>
+</div>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+(() => {
+  const deck = document.getElementById("deck");
+  const screens = Array.from(document.querySelectorAll(".world"));
+  const dots = Array.from(document.querySelectorAll(".dot"));
+  const label = document.getElementById("screenLabel");
+  const previous = document.getElementById("prev");
+  const next = document.getElementById("next");
+  const homeLink = document.getElementById("homeLink");
+  let current = 0;
+  let startX = 0;
+  let startY = 0;
+  let touchStartTime = 0;
 
-const revealItems = document.querySelectorAll(".reveal");
+  function goTo(index) {
+    current = (index + screens.length) % screens.length;
+    deck.style.transform = `translateX(-${current * 100}%)`;
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === current);
+      dot.setAttribute("aria-current", i === current ? "step" : "false");
     });
-  }, { threshold: 0.12 });
 
-  revealItems.forEach((item) => observer.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add("visible"));
-}
+    label.textContent = `0${current + 1} / 0${screens.length}`;
+    screens.forEach((screen, i) => {
+      screen.setAttribute("aria-hidden", i === current ? "false" : "true");
+    });
+  }
+
+  previous.addEventListener("click", () => goTo(current - 1));
+  next.addEventListener("click", () => goTo(current + 1));
+
+  document.querySelectorAll("[data-go]").forEach((control) => {
+    control.addEventListener("click", () => goTo(Number(control.dataset.go)));
+  });
+
+  homeLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    goTo(0);
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => goTo(Number(dot.dataset.go)));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") goTo(current + 1);
+    if (event.key === "ArrowLeft") goTo(current - 1);
+    if (event.key === "Home") goTo(0);
+    if (event.key === "End") goTo(screens.length - 1);
+  });
+
+  deck.addEventListener("touchstart", (event) => {
+    if (event.touches.length !== 1) return;
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  deck.addEventListener("touchend", (event) => {
+    if (event.changedTouches.length !== 1) return;
+    const dx = event.changedTouches[0].clientX - startX;
+    const dy = event.changedTouches[0].clientY - startY;
+    const elapsed = Date.now() - touchStartTime;
+
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25 && elapsed < 1200) {
+      goTo(dx < 0 ? current + 1 : current - 1);
+    }
+  }, { passive: true });
+
+  goTo(0);
+})();
 </script>
 </body>
 </html>
