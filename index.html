@@ -163,6 +163,35 @@ header {
   margin: auto;
 }
 
+/* ===== 3D UNIVERSE TRAVEL ===== */
+
+#deck {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.world {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition:
+    opacity .75s ease,
+    filter .75s ease;
+}
+
+.world-inner {
+  transition:
+    transform .75s cubic-bezier(.2,.8,.2,1),
+    opacity .75s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #deck {
+    transition:
+      transform .9s cubic-bezier(.2,.8,.2,1);
+  }
+}
+
+
 .eyebrow {
   color: var(--gold);
   text-transform: uppercase;
@@ -630,6 +659,42 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
   }
 }
 
+/* ===== CINEMATIC WORLD ARRIVAL ===== */
+
+@keyframes worldTravelForward {
+  from {
+    opacity: 0.35;
+    transform: perspective(1000px) translateZ(-100px) rotateY(-8deg) scale(0.94);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) translateZ(0) rotateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes worldTravelBackward {
+  from {
+    opacity: 0.35;
+    transform: perspective(1000px) translateZ(-100px) rotateY(8deg) scale(0.94);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) translateZ(0) rotateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.world-inner.travel-forward {
+  animation: worldTravelForward 0.9s ease both;
+}
+
+.world-inner.travel-backward {
+  animation: worldTravelBackward 0.9s ease both;
+} 
+
 </style>
 </head>
 
@@ -774,7 +839,6 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
         <span class="skill">UI Design</span>
         <span class="skill">Problem Solving</span>
       </div>
-
      
 <div class="actions">
   <a class="btn primary"
@@ -807,7 +871,7 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
   Open to connecting with recruiters, collaborators and fellow creators.
 </p>
   
-    </div>
+  </div>
   </section>
 
 </main>
@@ -838,9 +902,27 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
   let touchStartTime = 0;
 
   function goTo(index) {
-    current = (index + screens.length) % screens.length;
-    deck.style.transform = `translateX(-${current * 100}%)`;
+  const nextIndex = (index + screens.length) % screens.length;
 
+  const direction = nextIndex >= current ||
+    (current === screens.length - 1 && nextIndex === 0)
+    ? "travel-forward"
+    : "travel-backward";
+
+  current = nextIndex;
+  deck.style.transform = `translateX(-${current * 100}%)`;
+
+  screens.forEach((screen) => {
+    const content = screen.querySelector(".world-inner");
+    if (!content) return;
+
+    content.classList.remove("travel-forward", "travel-backward");
+
+    if (screen === screens[current]) {
+      void content.offsetWidth;
+      content.classList.add(direction);
+    }
+  });
     dots.forEach((dot, i) => {
       dot.classList.toggle("active", i === current);
       dot.setAttribute("aria-current", i === current ? "step" : "false");
