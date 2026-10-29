@@ -1,1 +1,248 @@
 Create portfolio homepage
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My World | Web Developer</title>
+<style>
+:root {
+  --gold: #e8c77b;
+  --bg: #070810;
+  --muted: #b9b8c8;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: #fff;
+  background: var(--bg);
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 20%, #25204b 0, transparent 32%),
+    radial-gradient(circle at 85% 55%, #30200f 0, transparent 30%),
+    #070810;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 7%;
+  border-bottom: 1px solid #ffffff18;
+}
+.brand { color: var(--gold); letter-spacing: 3px; }
+nav a, a { color: inherit; text-decoration: none; }
+nav .links { display: flex; gap: 20px; font-size: 13px; }
+.hero {
+  min-height: 83vh;
+  padding: 65px 7%;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 35px;
+}
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 11px;
+}
+h1 {
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: 1.02;
+  margin: 20px 0;
+}
+h1 span, h2 span { color: var(--gold); }
+.intro { color: var(--muted); line-height: 1.8; max-width: 470px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  display: inline-block;
+  padding: 14px 19px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  color: var(--gold);
+  font-size: 13px;
+}
+.btn.primary { background: var(--gold); color: #111; }
+.scene {
+  position: relative;
+  min-height: 390px;
+  display: grid;
+  place-items: center;
+  perspective: 800px;
+}
+.orbit {
+  position: absolute;
+  width: min(88%, 360px);
+  aspect-ratio: 1;
+  border: 1px solid #e8c77b80;
+  border-radius: 50%;
+  transform: rotateX(66deg) rotateZ(-20deg);
+  animation: orbit 13s linear infinite;
+  box-shadow: 0 0 22px #e8c77b15;
+}
+.orbit.two {
+  width: min(70%, 285px);
+  transform: rotateX(66deg) rotateZ(35deg);
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+.planet {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: radial-gradient(circle at 30% 25%, #63518c, #252044 48%, #090a14 78%);
+  box-shadow: inset -22px -15px 35px #000b,
+              0 0 50px #8061c64d;
+  border: 1px solid #e8c77b80;
+  animation: float 4s ease-in-out infinite;
+  overflow: hidden;
+}
+.photo-placeholder {
+  padding: 20px;
+  color: #f5dca0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.photo-placeholder b { display: block; font-size: 40px; }
+@keyframes orbit {
+  to { transform: rotateX(66deg) rotateZ(340deg); }
+}
+@keyframes float {
+  50% { transform: translateY(-12px); }
+}
+section { padding: 65px 7%; }
+.section-label { color: var(--gold); letter-spacing: 3px; font-size: 11px; }
+h2 { font-size: clamp(30px, 4vw, 46px); margin: 12px 0 28px; }
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.card {
+  border: 1px solid #ffffff20;
+  padding: 27px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #ffffff0b, #ffffff02);
+  transition: transform .3s, border-color .3s;
+}
+.card:hover { transform: translateY(-6px); border-color: var(--gold); }
+.card small { color: var(--gold); letter-spacing: 2px; }
+.card p { color: var(--muted); line-height: 1.7; }
+.card a { color: var(--gold); font-size: 13px; }
+.skills { color: var(--muted); line-height: 2.2; }
+footer {
+  text-align: center;
+  border-top: 1px solid #ffffff18;
+  padding: 30px 7%;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media(max-width: 700px) {
+  nav { padding: 20px 5%; }
+  nav .links { gap: 12px; font-size: 11px; }
+  .hero { grid-template-columns: 1fr; padding: 55px 6%; }
+  .scene { min-height: 310px; }
+  .planet { width: 155px; height: 155px; }
+  .projects { grid-template-columns: 1fr; }
+  section { padding: 48px 6%; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <strong class="brand">MY WORLD ✦</strong>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="about">
+  <div>
+    <div class="eyebrow">WELCOME TO MY UNIVERSE</div>
+    <h1>I turn ideas<br>into <span>experiences.</span></h1>
+    <p class="intro">
+      I'm an aspiring front-end web developer passionate about
+      creativity, elegant design and solving problems through code.
+      Every project is a new world to explore.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#projects">Explore My World ↗</a>
+      <a class="btn" href="#contact">Let's Connect</a>
+    </div>
+  </div>
+
+  <div class="scene" aria-label="Animated planet with space for your portrait">
+    <div class="orbit"></div>
+    <div class="orbit two"></div>
+    <div class="planet">
+      <div class="photo-placeholder">
+        <b>✦</b>
+        YOUR PORTRAIT<br>
+        WILL GO HERE
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">MY CREATIVE UNIVERSE</div>
+  <h2>Projects that <span>tell my story.</span></h2>
+  <div class="projects">
+    <article class="card">
+      <small>01 / FASHION</small>
+      <h3>Jennifer Signature Couture</h3>
+      <p>A luxury fashion brand concept built around elegance,
+      timeless style and a vision for the future.</p>
+      <a href="https://jennifersignaturecouture.github.io/jennifer-signature-couture/"
+         target="_blank" rel="noopener">Explore Fashion Website ↗</a>
+    </article>
+    <article class="card">
+      <small>02 / HOSPITALITY</small>
+      <h3>Catherine Royale</h3>
+      <p>A refined restaurant website inspired by luxury dining,
+      thoughtful design and exceptional hospitality.</p>
+      <a href="https://catherine-royale.github.io/catherine-royale/"
+         target="_blank" rel="noopener">Explore Restaurant Website ↗</a>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">WHAT I'M BUILDING</div>
+  <h2>My <span>toolkit.</span></h2>
+  <p class="skills">HTML · CSS · JavaScript learning · Responsive Web Design ·
+  Creative UI Design · Problem Solving · GitHub Pages</p>
+</section>
+
+<section id="contact">
+  <div class="section-label">THE NEXT CHAPTER</div>
+  <h2>Let's create something <span>meaningful.</span></h2>
+  <p class="intro">Open to connecting with recruiters, clients and fellow creators.</p>
+  <div class="actions">
+    <a class="btn primary" href="https://github.com/jennifersignaturecouture"
+       target="_blank" rel="noopener">Visit My GitHub ↗</a>
+    <a class="btn" href="https://www.linkedin.com/" target="_blank"
+       rel="noopener">Connect on LinkedIn ↗</a>
+  </div>
+</section>
+</main>
+
+<footer>Designed with purpose ✦ Built one step at a time.</footer>
+</body>
+</html>
