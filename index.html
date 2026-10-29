@@ -6,243 +6,577 @@ Create portfolio homepage
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My World | Web Developer</title>
+<meta name="theme-color" content="#050407">
+<meta name="description" content="Explore the creative universe of Jennifer — front-end web developer and creative builder.">
+<title>Jennifer | My Creative Universe</title>
+
 <style>
 :root {
-  --gold: #e8c77b;
-  --bg: #070810;
-  --muted: #b9b8c8;
+  --gold: #f5c76b;
+  --bright: #ffe5a3;
+  --bg: #050407;
+  --muted: #b9b3bd;
+  --panel: rgba(19, 15, 25, .78);
 }
+
 * { box-sizing: border-box; }
+
 html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
-  color: #fff;
+  color: #fffaf1;
   background: var(--bg);
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
-body::before {
-  content: "";
+
+a { color: inherit; text-decoration: none; }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+#stars, #stars2 {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, #25204b 0, transparent 32%),
-    radial-gradient(circle at 85% 55%, #30200f 0, transparent 30%),
-    #070810;
+  z-index: -2;
+  background-image:
+    radial-gradient(2px 2px at 20px 40px, #fff 50%, transparent),
+    radial-gradient(1px 1px at 100px 130px, #f5c76b 50%, transparent),
+    radial-gradient(2px 2px at 220px 80px, #fff 50%, transparent),
+    radial-gradient(1px 1px at 300px 200px, #fff 50%, transparent),
+    radial-gradient(1px 1px at 170px 270px, #f5c76b 50%, transparent);
+  background-size: 340px 310px;
+  animation: starDrift 65s linear infinite;
 }
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 7%;
-  border-bottom: 1px solid #ffffff18;
-}
-.brand { color: var(--gold); letter-spacing: 3px; }
-nav a, a { color: inherit; text-decoration: none; }
-nav .links { display: flex; gap: 20px; font-size: 13px; }
-.hero {
-  min-height: 83vh;
-  padding: 65px 7%;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  align-items: center;
-  gap: 35px;
-}
-.eyebrow {
-  color: var(--gold);
-  letter-spacing: 4px;
-  font-size: 11px;
-}
-h1 {
-  font-size: clamp(42px, 7vw, 78px);
-  line-height: 1.02;
-  margin: 20px 0;
-}
-h1 span, h2 span { color: var(--gold); }
-.intro { color: var(--muted); line-height: 1.8; max-width: 470px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.btn {
-  display: inline-block;
-  padding: 14px 19px;
-  border: 1px solid var(--gold);
-  border-radius: 4px;
-  color: var(--gold);
-  font-size: 13px;
-}
-.btn.primary { background: var(--gold); color: #111; }
-.scene {
-  position: relative;
-  min-height: 390px;
-  display: grid;
-  place-items: center;
-  perspective: 800px;
-}
-.orbit {
-  position: absolute;
-  width: min(88%, 360px);
-  aspect-ratio: 1;
-  border: 1px solid #e8c77b80;
-  border-radius: 50%;
-  transform: rotateX(66deg) rotateZ(-20deg);
-  animation: orbit 13s linear infinite;
-  box-shadow: 0 0 22px #e8c77b15;
-}
-.orbit.two {
-  width: min(70%, 285px);
-  transform: rotateX(66deg) rotateZ(35deg);
-  animation-duration: 9s;
+
+#stars2 {
+  opacity: .45;
+  background-position: 100px 120px;
+  background-size: 230px 270px;
+  animation-duration: 100s;
   animation-direction: reverse;
 }
-.planet {
-  width: 190px;
-  height: 190px;
+
+@keyframes starDrift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-310px); }
+}
+
+.ambient {
+  position: fixed;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
+  background: rgba(171, 99, 32, .10);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -1;
+  animation: glow 7s ease-in-out infinite alternate;
+}
+
+.ambient.one { top: 8%; left: 20%; }
+.ambient.two { right: -200px; bottom: 4%; animation-delay: -3s; }
+
+@keyframes glow {
+  from { opacity: .3; transform: scale(.85); }
+  to { opacity: .9; transform: scale(1.15); }
+}
+
+header {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 7%;
+  border-bottom: 1px solid rgba(245,199,107,.13);
+  background: rgba(5,4,7,.55);
+  backdrop-filter: blur(14px);
+}
+
+.logo {
+  font-family: Georgia, serif;
+  color: var(--gold);
+  font-size: 21px;
+  letter-spacing: 2px;
+}
+
+.logo small {
+  display: block;
+  margin-top: 5px;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+nav { display: flex; gap: 24px; flex-wrap: wrap; }
+
+nav a {
+  font-size: 12px;
+  color: var(--muted);
+  transition: color .3s;
+}
+
+nav a:hover { color: var(--gold); }
+
+.hero {
+  min-height: 650px;
+  max-width: 1400px;
+  margin: auto;
+  padding: 65px 7% 85px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 25px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
+
+h1 {
+  font-size: clamp(43px, 6vw, 78px);
+  font-weight: 400;
+  line-height: 1.06;
+  margin: 22px 0;
+}
+
+h1 em, h2 em { color: var(--gold); font-weight: 400; }
+
+.intro {
+  color: var(--muted);
+  max-width: 460px;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 19px;
+  border: 1px solid var(--gold);
+  border-radius: 40px;
+  font-size: 12px;
+  transition: transform .3s, background .3s;
+}
+
+.btn:hover { transform: translateY(-4px); background: rgba(245,199,107,.12); }
+
+.btn.primary { background: var(--gold); color: #17100a; }
+
+.universe {
+  position: relative;
+  min-height: 410px;
   display: grid;
   place-items: center;
-  text-align: center;
-  background: radial-gradient(circle at 30% 25%, #63518c, #252044 48%, #090a14 78%);
-  box-shadow: inset -22px -15px 35px #000b,
-              0 0 50px #8061c64d;
-  border: 1px solid #e8c77b80;
-  animation: float 4s ease-in-out infinite;
-  overflow: hidden;
+  isolation: isolate;
 }
-.photo-placeholder {
-  padding: 20px;
-  color: #f5dca0;
-  font-size: 12px;
-  line-height: 1.7;
+
+.core {
+  width: min(66vw, 300px);
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,227,170,.22), transparent 30%),
+    radial-gradient(circle, #21172a 0%, #0b0910 60%, #050407 72%);
+  border: 1px solid rgba(245,199,107,.7);
+  box-shadow: 0 0 35px rgba(245,174,66,.18), inset 0 0 45px rgba(245,199,107,.1);
 }
-.photo-placeholder b { display: block; font-size: 40px; }
+
+.core::before, .core::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border: 2px solid rgba(245,199,107,.75);
+  border-radius: 50%;
+  transform: rotate(-28deg) scaleY(.35);
+  box-shadow: 0 0 15px rgba(245,199,107,.4);
+  animation: orbit 9s linear infinite;
+}
+
+.core::after {
+  inset: -38px;
+  border-color: rgba(255,226,159,.48);
+  transform: rotate(36deg) scaleY(.46);
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+
 @keyframes orbit {
-  to { transform: rotateX(66deg) rotateZ(340deg); }
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
 }
+
+.portrait-placeholder {
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  border: 1px dashed rgba(245,199,107,.6);
+  background: radial-gradient(circle, #21172b, #08070b 75%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  color: var(--gold);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.portrait-placeholder .person {
+  font-size: 50px;
+  margin-bottom: 12px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.portrait-placeholder strong { font-size: 12px; letter-spacing: 2px; }
+.portrait-placeholder span { font-size: 10px; color: var(--muted); margin-top: 8px; }
+
 @keyframes float {
-  50% { transform: translateY(-12px); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
-section { padding: 65px 7%; }
-.section-label { color: var(--gold); letter-spacing: 3px; font-size: 11px; }
-h2 { font-size: clamp(30px, 4vw, 46px); margin: 12px 0 28px; }
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #fff0c5, #bd7b34 35%, #3d1d13 75%);
+  box-shadow: 0 0 24px rgba(245,174,66,.28);
+  animation: float 5s ease-in-out infinite;
+}
+
+.planet.p1 { width: 35px; height: 35px; top: 13%; right: 9%; }
+.planet.p2 { width: 20px; height: 20px; left: 6%; bottom: 18%; animation-delay: -2s; }
+.planet.p3 { width: 12px; height: 12px; top: 19%; left: 13%; animation-delay: -1s; }
+
+.tag {
+  position: absolute;
+  right: -2%;
+  bottom: 11%;
+  padding: 13px 16px;
+  border: 1px solid rgba(245,199,107,.38);
+  background: var(--panel);
+  border-radius: 12px;
+  font-size: 11px;
+  line-height: 1.8;
+  backdrop-filter: blur(10px);
+}
+
+.tag span { display: block; color: var(--gold); }
+
+section.content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 65px 7%;
+}
+
+.section-head { margin-bottom: 30px; }
+
+h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 400; margin: 12px 0; }
+
+.section-note { color: var(--muted); line-height: 1.8; font-size: 13px; max-width: 560px; }
+
 .projects {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 20px;
 }
-.card {
-  border: 1px solid #ffffff20;
-  padding: 27px;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #ffffff0b, #ffffff02);
-  transition: transform .3s, border-color .3s;
+
+.project {
+  position: relative;
+  padding: 28px;
+  border-radius: 18px;
+  border: 1px solid rgba(245,199,107,.25);
+  background: linear-gradient(140deg, rgba(43,29,42,.75), rgba(10,8,14,.88));
+  transition: transform .35s, border-color .35s, box-shadow .35s;
+  overflow: hidden;
 }
-.card:hover { transform: translateY(-6px); border-color: var(--gold); }
-.card small { color: var(--gold); letter-spacing: 2px; }
-.card p { color: var(--muted); line-height: 1.7; }
-.card a { color: var(--gold); font-size: 13px; }
-.skills { color: var(--muted); line-height: 2.2; }
-footer {
-  text-align: center;
-  border-top: 1px solid #ffffff18;
-  padding: 30px 7%;
-  color: var(--muted);
+
+.project::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  right: -70px;
+  top: -75px;
+  background: rgba(245,199,107,.08);
+  filter: blur(12px);
+}
+
+.project:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.project-icon { font-size: 34px; }
+.project h3 { font-size: 28px; margin: 16px 0 8px; font-weight: 400; }
+.project p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.project .btn { margin-top: 10px; position: relative; z-index: 1; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+.skill {
+  padding: 11px 14px;
+  border: 1px solid rgba(245,199,107,.25);
+  border-radius: 30px;
+  color: #e9d5ae;
   font-size: 12px;
+  background: rgba(255,255,255,.025);
 }
-@media(max-width: 700px) {
-  nav { padding: 20px 5%; }
-  nav .links { gap: 12px; font-size: 11px; }
-  .hero { grid-template-columns: 1fr; padding: 55px 6%; }
-  .scene { min-height: 310px; }
-  .planet { width: 155px; height: 155px; }
-  .projects { grid-template-columns: 1fr; }
-  section { padding: 48px 6%; }
+
+.quote {
+  padding: 25px;
+  border-left: 2px solid var(--gold);
+  background: rgba(245,199,107,.045);
+  color: var(--muted);
+  line-height: 1.9;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.contact-box {
+  text-align: center;
+  padding: 45px 20px;
+  border: 1px solid rgba(245,199,107,.22);
+  border-radius: 20px;
+  background: radial-gradient(ellipse at top, rgba(153,93,35,.15), transparent 70%);
+}
+
+footer {
+  border-top: 1px solid rgba(245,199,107,.15);
+  padding: 28px 7%;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 2;
+}
+
+footer strong { color: var(--gold); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media (max-width: 760px) {
+  header { padding: 19px 5%; align-items: flex-start; flex-direction: column; }
+  nav { gap: 16px; }
+  .hero { grid-template-columns: 1fr; padding: 55px 6% 65px; gap: 10px; }
+  .universe { min-height: 350px; margin-top: 15px; }
+  .core { width: min(65vw, 260px); }
+  .tag { right: 0; bottom: 4%; }
+  section.content { padding: 55px 6%; }
+  .projects, .about-grid { grid-template-columns: 1fr; }
+  .project { padding: 24px; }
+}
+
+@media (max-width: 380px) {
+  nav { gap: 12px; }
+  nav a { font-size: 11px; }
+  .universe { min-height: 300px; }
+  .tag { font-size: 10px; }
 }
 </style>
 </head>
+
 <body>
-<nav>
-  <strong class="brand">MY WORLD ✦</strong>
-  <div class="links">
+<div id="stars"></div>
+<div id="stars2"></div>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+
+<header>
+  <a class="logo" href="#home">JENNIFER
+    <small>MY CREATIVE UNIVERSE</small>
+  </a>
+  <nav aria-label="Main navigation">
+    <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <main>
-<section class="hero" id="about">
-  <div>
-    <div class="eyebrow">WELCOME TO MY UNIVERSE</div>
-    <h1>I turn ideas<br>into <span>experiences.</span></h1>
+<section class="hero" id="home">
+  <div class="reveal">
+    <div class="eyebrow">Welcome to my universe</div>
+    <h1>I turn ideas into <em>experiences.</em></h1>
     <p class="intro">
-      I'm an aspiring front-end web developer passionate about
-      creativity, elegant design and solving problems through code.
-      Every project is a new world to explore.
+      I'm a front-end web developer and creative builder who loves
+      bringing ideas to life through thoughtful design, code and
+      problem-solving. Every project is a new world to explore.
     </p>
     <div class="actions">
-      <a class="btn primary" href="#projects">Explore My World ↗</a>
-      <a class="btn" href="#contact">Let's Connect</a>
+      <a class="btn primary" href="#projects">Explore My Projects ↗</a>
+      <a class="btn" href="#contact">Let's Connect ✦</a>
     </div>
   </div>
 
-  <div class="scene" aria-label="Animated planet with space for your portrait">
-    <div class="orbit"></div>
-    <div class="orbit two"></div>
-    <div class="planet">
-      <div class="photo-placeholder">
-        <b>✦</b>
-        YOUR PORTRAIT<br>
-        WILL GO HERE
+  <div class="universe reveal" aria-label="Animated galaxy and portrait placeholder">
+    <div class="core">
+      <div class="portrait-placeholder">
+        <div class="person" aria-hidden="true">✧</div>
+        <strong>YOUR PORTRAIT</strong>
+        <span>Your photo will go here</span>
       </div>
     </div>
+    <div class="planet p1"></div>
+    <div class="planet p2"></div>
+    <div class="planet p3"></div>
+    <div class="tag">
+      <strong>Front-End Developer</strong>
+      <span>HTML · CSS · JavaScript</span>
+      Creating with purpose ✨
+    </div>
   </div>
 </section>
 
-<section id="projects">
-  <div class="section-label">MY CREATIVE UNIVERSE</div>
-  <h2>Projects that <span>tell my story.</span></h2>
+<section class="content reveal" id="projects">
+  <div class="section-head">
+    <div class="eyebrow">My creative universe</div>
+    <h2>Worlds I've <em>created.</em></h2>
+    <p class="section-note">
+      Two projects. Two different visions. Each one is part of my journey
+      as a developer and creative entrepreneur.
+    </p>
+  </div>
+
   <div class="projects">
-    <article class="card">
-      <small>01 / FASHION</small>
+    <article class="project">
+      <div class="project-icon" aria-hidden="true">♛</div>
+      <div class="eyebrow">Fashion · E-commerce concept</div>
       <h3>Jennifer Signature Couture</h3>
-      <p>A luxury fashion brand concept built around elegance,
-      timeless style and a vision for the future.</p>
-      <a href="https://jennifersignaturecouture.github.io/jennifer-signature-couture/"
-         target="_blank" rel="noopener">Explore Fashion Website ↗</a>
+      <p>
+        A luxury fashion brand website inspired by timeless elegance,
+        bespoke style and a dream that means everything to me.
+      </p>
+      <a class="btn" href="https://jennifersignaturecouture.github.io/jennifer-signature-couture/" target="_blank" rel="noopener noreferrer">Enter This World ↗</a>
     </article>
-    <article class="card">
-      <small>02 / HOSPITALITY</small>
+
+    <article class="project">
+      <div class="project-icon" aria-hidden="true">✦</div>
+      <div class="eyebrow">Hospitality · Restaurant</div>
       <h3>Catherine Royale</h3>
-      <p>A refined restaurant website inspired by luxury dining,
-      thoughtful design and exceptional hospitality.</p>
-      <a href="https://catherine-royale.github.io/catherine-royale/"
-         target="_blank" rel="noopener">Explore Restaurant Website ↗</a>
+      <p>
+        A refined restaurant website designed around modern French cuisine,
+        fine dining and memorable guest experiences.
+      </p>
+      <a class="btn" href="https://catherine-royale.github.io/catherine-royale/" target="_blank" rel="noopener noreferrer">Discover This World ↗</a>
     </article>
   </div>
 </section>
 
-<section id="skills">
-  <div class="section-label">WHAT I'M BUILDING</div>
-  <h2>My <span>toolkit.</span></h2>
-  <p class="skills">HTML · CSS · JavaScript learning · Responsive Web Design ·
-  Creative UI Design · Problem Solving · GitHub Pages</p>
+<section class="content reveal" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="eyebrow">Beyond the screen</div>
+      <h2>A little about <em>me.</em></h2>
+      <p class="section-note">
+        I love the meeting point between technology and creativity.
+        I enjoy building visually engaging websites, learning new skills,
+        and finding solutions when something doesn't work as expected.
+        I'm growing one project, one challenge and one line of code at a time.
+      </p>
+    </div>
+    <div class="quote">
+      “Big dreams begin with small steps. Keep creating, keep learning,
+      and keep turning your ideas into something real.”
+    </div>
+  </div>
 </section>
 
-<section id="contact">
-  <div class="section-label">THE NEXT CHAPTER</div>
-  <h2>Let's create something <span>meaningful.</span></h2>
-  <p class="intro">Open to connecting with recruiters, clients and fellow creators.</p>
-  <div class="actions">
-    <a class="btn primary" href="https://github.com/jennifersignaturecouture"
-       target="_blank" rel="noopener">Visit My GitHub ↗</a>
-    <a class="btn" href="https://www.linkedin.com/" target="_blank"
-       rel="noopener">Connect on LinkedIn ↗</a>
+<section class="content reveal" id="skills">
+  <div class="eyebrow">My toolkit</div>
+  <h2>Skills & <em>curiosity.</em></h2>
+  <p class="section-note">The tools I use and the abilities I continue to develop.</p>
+  <div class="skills">
+    <span class="skill">HTML5</span>
+    <span class="skill">CSS3</span>
+    <span class="skill">Responsive Design</span>
+    <span class="skill">JavaScript · Learning</span>
+    <span class="skill">UI Design</span>
+    <span class="skill">Git & GitHub</span>
+    <span class="skill">Problem Solving</span>
+    <span class="skill">Creative Thinking</span>
+  </div>
+</section>
+
+<section class="content reveal" id="contact">
+  <div class="contact-box">
+    <div class="eyebrow">The next world starts here</div>
+    <h2>Let's create something <em>meaningful.</em></h2>
+    <p class="section-note" style="margin: 0 auto 24px;">
+      Open to connecting with fellow creators, collaborators and people
+      building exciting things with technology.
+    </p>
+    <a class="btn primary" href="https://github.com/jennifersignaturecouture" target="_blank" rel="noopener noreferrer">Explore My GitHub ↗</a>
   </div>
 </section>
 </main>
 
-<footer>Designed with purpose ✦ Built one step at a time.</footer>
+<footer>
+  <strong>JENNIFER · MY CREATIVE UNIVERSE</strong><br>
+  Built with curiosity, creativity and code.<br>
+  © <span id="year"></span> Jennifer. Keep dreaming beyond the stars.
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("visible"));
+}
+</script>
 </body>
 </html>
