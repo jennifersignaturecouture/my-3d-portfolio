@@ -480,10 +480,183 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
     transition-duration: .01ms !important;
   }
 }
+
+/* ===== CINEMATIC FILM INTRO ===== */
+
+#cinematic-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, #24182d 0%, #090710 55%, #020207 100%);
+  color: #fff5df;
+  animation: introFadeOut 1s ease 7s forwards;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 24px;
+  animation: introReveal 2s ease both;
+}
+
+.intro-eyebrow {
+  color: #e9c47a;
+  letter-spacing: 5px;
+  font-size: 10px;
+  margin-bottom: 25px;
+}
+
+.intro-name {
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 7vw, 62px);
+  font-weight: 400;
+  letter-spacing: 3px;
+  line-height: 1.2;
+}
+
+.intro-name span {
+  display: block;
+  color: #e9c47a;
+  margin-top: 8px;
+}
+
+.intro-tagline {
+  color: #d7c6a4;
+  letter-spacing: 3px;
+  font-size: 13px;
+  margin-top: 25px;
+}
+
+.intro-line {
+  width: 90px;
+  height: 1px;
+  margin: 25px auto;
+  background: #e9c47a;
+  animation: lineGrow 2s ease both;
+}
+
+.intro-entering {
+  color: #b9a77f;
+  font-size: 9px;
+  letter-spacing: 4px;
+}
+
+.intro-stars {
+  position: absolute;
+  inset: -50%;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 70% 60%, #e9c47a 50%, transparent 100%),
+    radial-gradient(1px 1px at 40% 80%, #fff 50%, transparent 100%);
+  background-size: 180px 180px;
+  animation: starsDrift 12s linear infinite;
+}
+
+.intro-orbit {
+  position: absolute;
+  width: 320px;
+  height: 110px;
+  border: 1px solid #e9c47a55;
+  border-radius: 50%;
+  box-shadow: 0 0 25px #e9c47a22;
+}
+
+.orbit-one {
+  transform: rotate(-25deg);
+  animation: orbitGlow 3s ease-in-out infinite alternate;
+}
+
+.orbit-two {
+  transform: rotate(35deg) scale(1.3);
+  border-color: #e9c47a33;
+  animation: orbitGlow 4s ease-in-out infinite alternate-reverse;
+}
+
+#skip-intro {
+  position: absolute;
+  z-index: 5;
+  right: 22px;
+  bottom: 25px;
+  padding: 12px 18px;
+  color: #f5d99c;
+  background: #17121dcc;
+  border: 1px solid #e9c47a88;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+#skip-intro:active {
+  transform: scale(.95);
+}
+
+@keyframes introReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to { width: 90px; }
+}
+
+@keyframes starsDrift {
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1.15); }
+}
+
+@keyframes orbitGlow {
+  from { opacity: .3; }
+  to { opacity: 1; }
+}
+
+@keyframes introFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 </style>
 </head>
 
 <body>
+
+<div id="cinematic-intro" aria-label="Portfolio introduction">
+  <div class="intro-stars"></div>
+  <div class="intro-orbit orbit-one"></div>
+  <div class="intro-orbit orbit-two"></div>
+
+  <div class="intro-content">
+    <p class="intro-eyebrow">A CREATIVE UNIVERSE</p>
+
+    <h1 class="intro-name">
+      HYCINTH CATHERINE
+      <span>CHINWENDU</span>
+    </h1>
+
+    <p class="intro-tagline">Beyond the ordinary.</p>
+
+    <div class="intro-line"></div>
+    <p class="intro-entering">PREPARING YOUR EXPERIENCE</p>
+  </div>
+
+  <button id="skip-intro" type="button">Skip Intro ↗</button>
+</div>
+
 <div id="stars"></div>
 <div id="stars2"></div>
 <div class="ambient a"></div>
@@ -722,6 +895,25 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
 
   goTo(0);
 })();
-</script>
+
+  // ===== CINEMATIC INTRO CONTROLS =====
+  const intro = document.getElementById("cinematic-intro");
+  const skipIntro = document.getElementById("skip-intro");
+
+  function finishIntro() {
+    if (!intro) return;
+
+    intro.classList.add("intro-finished");
+    intro.style.animation = "none";
+    intro.style.opacity = "0";
+    intro.style.visibility = "hidden";
+    intro.style.pointerEvents = "none";
+  }
+
+  if (skipIntro) {
+    skipIntro.addEventListener("click", finishIntro);
+  }
+
+</script> 
 </body>
 </html>
